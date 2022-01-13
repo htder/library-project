@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Library</title>
+    <link rel="stylesheet" href="reset.css" />
+    <link rel="stylesheet" href="style.css" />
+    <script src="index.js" defer></script>
+  </head>
+  <header><h1>Library</h1></header>
+  <body>
+    <div class="grid-container">
+      <div class="card empty">
+        <div class="circle">
+          <div class="bar horizontal"></div>
+          <div class="bar vertical"></div>
+        </div>
+      </div>
+    </div>
+    <div class="modal">
+      <form id="form">
+        <div class="model-content">
+          <label>Title</label>
+          <input type="text" placeholder="Title" name="bookTitle" required />
+
+          <label>Author</label>
+          <input type="text" placeholder="Author" name="bookAuthor" required />
+
+          <label>Pages</label>
+          <input
+            type="text"
+            placeholder="Number of Pages"
+            name="bookPages"
+            required
+          />
+
+          <div class="read">
+            <label>Read</label>
+            <input type="checkbox" name="bookRead" />
+          </div>
+
+          <button type="button" class="submit">Submit</button>
+          <button type="button" class="cancel">Cancel</button>
+        </div>
+      </form>
+    </div>
+  </body>
+</html>
