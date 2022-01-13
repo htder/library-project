@@ -117,26 +117,4 @@ function bookHTML() {
   </div>`;
 }
 
-function findBookIndex(book) {
-  const index = myLibrary.findIndex((element) => book.title === element.title);
-  return index === -1 ? myLibrary.length : index;
-}
 renderLibrary();
-
-// const removeBtn = document.querySelectorAll(".remove");
-
-// removeBtn.forEach((button) => {
-//   button.addEventListener("click", () => {
-//     const card = document.querySelector(`[data-index="${button.id}"`);
-//     card.parentElement.removeChild(card);
-//   });
-// });
-
-// // const readCheck = document.querySelectorAll(".readCheck");
-// document.querySelectorAll(".readCheck").forEach((button) => {
-//   button.addEventListener("click", () => {
-//     const index = +button.id;
-//     myLibrary[index].read = !myLibrary[index].read;
-//     console.table(myLibrary);
-//   });
-// });
