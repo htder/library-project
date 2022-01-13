@@ -19,26 +19,52 @@
     <div class="modal">
       <form id="form">
         <div class="model-content">
-          <label>Title</label>
-          <input type="text" placeholder="Title" name="bookTitle" required />
-
-          <label>Author</label>
-          <input type="text" placeholder="Author" name="bookAuthor" required />
-
-          <label>Pages</label>
-          <input
-            type="text"
-            placeholder="Number of Pages"
-            name="bookPages"
-            required
-          />
-
-          <div class="read">
-            <label>Read</label>
-            <input type="checkbox" name="bookRead" />
+          <div class="form-field">
+            <label>Title</label>
+            <input
+              type="text"
+              placeholder="Title"
+              name="bookTitle"
+              class="focus"
+              id="form-title"
+              required
+            />
+            <small></small>
           </div>
 
-          <button type="button" class="submit">Submit</button>
+          <div class="form-field">
+            <label>Author</label>
+            <input
+              type="text"
+              placeholder="Author"
+              name="bookAuthor"
+              required
+              id="form-author"
+            />
+            <small></small>
+          </div>
+
+          <div class="form-field">
+            <label>Pages</label>
+            <input
+              type="text"
+              placeholder="Number of Pages"
+              name="bookPages"
+              id="form-pages"
+              required
+            />
+            <small></small>
+          </div>
+
+          <div class="form-field">
+            <div class="read">
+              <label>Read</label>
+              <input type="checkbox" id="form-read" name="bookRead" />
+            </div>
+            <small></small>
+          </div>
+
+          <button type="submit" class="submit">Submit</button>
           <button type="button" class="cancel">Cancel</button>
         </div>
       </form>

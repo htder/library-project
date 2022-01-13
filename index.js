@@ -5,6 +5,9 @@ const submit = document.querySelector(".submit");
 const cancel = document.querySelector(".cancel");
 const form = document.getElementById("form");
 const body = document.querySelector("body");
+const titleEl = document.querySelector("#form-title");
+const authorEl = document.querySelector("#form-author");
+const pagesEl = document.querySelector("#form-pages");
 
 let myLibrary = [
   new Book("The Lion the Witch and the Wardrobe", "C.S. Lewis", 100, true, 0),
@@ -40,17 +43,24 @@ openModel.addEventListener("click", () => {
 submit.addEventListener("click", (event) => {
   index++;
   event.preventDefault();
-  const newBook = new Book(
-    form["bookTitle"].value,
-    form["bookAuthor"].value,
-    form["bookPages"].value,
-    form["bookRead"].checked ? true : false,
-    index
-  );
-  clearForm();
-  hideModal();
-  renderBook(newBook, myLibrary.length);
-  myLibrary.push(newBook);
+  let titleValid = checkTitle(),
+    authorValid = checkAuthor(),
+    pagesValid = checkPages();
+
+  let isFormValid = titleValid && authorValid && pagesValid;
+  if (isFormValid) {
+    const newBook = new Book(
+      form["bookTitle"].value,
+      form["bookAuthor"].value,
+      form["bookPages"].value,
+      form["bookRead"].checked ? true : false,
+      index
+    );
+    clearForm();
+    hideModal();
+    renderBook(newBook, myLibrary.length);
+    myLibrary.push(newBook);
+  }
 });
 
 cancel.addEventListener("click", () => {
@@ -95,6 +105,7 @@ function hideModal() {
 
 function showModal() {
   modal.style.display = "block";
+  document.querySelector(".focus").focus();
 }
 
 function bookHTML() {
@@ -115,6 +126,70 @@ function bookHTML() {
     <button type="button" class="remove" id="remove-${dataAttribute}">Remove</button>
   </div>
   </div>`;
+}
+
+function isRequired(value) {
+  return value === "";
+}
+
+function isNumber(value) {
+  return Number.isNumber(value);
+}
+
+function showError(input, message) {
+  const formField = input.parentElement;
+  input.classList.remove("success");
+  input.classList.add("error");
+
+  const error = formField.querySelector("small");
+  error.textContent = message;
+}
+
+function showSuccess(input) {
+  const formField = input.parentElement;
+  input.classList.remove("error");
+  input.classList.add("success");
+
+  const error = formField.querySelector("small");
+  error.textContent = "";
+}
+
+function checkTitle() {
+  let valid = false;
+  const title = titleEl.value.trim();
+  if (isRequired(title)) {
+    showError(titleEl, "Title cannot be blank.");
+  } else {
+    showModal(titleEl);
+    valid = true;
+  }
+  return valid;
+}
+
+function checkAuthor() {
+  let valid = false;
+  const author = authorEl.value.trim();
+  if (isRequired(author)) {
+    showError(authorEl, "Author cannot be blank.");
+  } else {
+    showModal(authorEl);
+    valid = true;
+  }
+  return valid;
+}
+
+function checkPages() {
+  let valid = false;
+  const pages = pagesEl.value.trim();
+  if (isRequired(pages)) {
+    showError(pagesEl, "Pages cannot be blank.");
+  } else if (isNumber(pages)) {
+    showError(pagesEl, "Has to be a number");
+  } else {
+    showModal(pagesEl);
+    valid = true;
+  }
+  return valid;
 }
 
 renderLibrary();

@@ -136,9 +136,9 @@ p.title {
 input[type="text"] {
   width: 100%;
   padding: 12px 20px;
-  margin: 5px 0 14px 0;
+  margin: 5px 0 2px 0;
   display: inline-block;
-  border: 1px solid #ccc;
+  /* border: 1px solid #ccc; */
   box-sizing: border-box;
 }
 
@@ -194,6 +194,10 @@ button:hover {
   padding-top: 60px;
 }
 
+small {
+  padding: 10px;
+}
+
 button.remove {
   background-color: #f44336;
   color: white;
@@ -208,4 +212,22 @@ button.remove {
   font-size: 0.8rem;
   padding: 5px;
   border-radius: 15px;
+}
+
+small {
+  font-size: 0.6rem;
+  color: red;
+  margin: 5px 0 14px 0;
+}
+
+.error {
+  border: 1px solid red;
+}
+
+.success {
+  border: 1px solid green;
+}
+
+.form-field {
+  margin: 12px;
 }
