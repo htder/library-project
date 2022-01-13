@@ -5,9 +5,6 @@ const submit = document.querySelector(".submit");
 const cancel = document.querySelector(".cancel");
 const form = document.getElementById("form");
 const body = document.querySelector("body");
-const titleEl = document.querySelector("#form-title");
-const authorEl = document.querySelector("#form-author");
-const pagesEl = document.querySelector("#form-pages");
 
 let myLibrary = [
   new Book("The Lion the Witch and the Wardrobe", "C.S. Lewis", 100, true, 0),
@@ -41,11 +38,14 @@ openModel.addEventListener("click", () => {
 });
 
 submit.addEventListener("click", (event) => {
+  const titleEl = document.querySelector("#form-title");
+  const authorEl = document.querySelector("#form-author");
+  const pagesEl = document.querySelector("#form-pages");
   index++;
   event.preventDefault();
-  let titleValid = checkTitle(),
-    authorValid = checkAuthor(),
-    pagesValid = checkPages();
+  let titleValid = checkTitle(titleEl),
+    authorValid = checkAuthor(authorEl),
+    pagesValid = checkPages(pagesEl);
 
   let isFormValid = titleValid && authorValid && pagesValid;
   if (isFormValid) {
@@ -133,7 +133,7 @@ function isRequired(value) {
 }
 
 function isNumber(value) {
-  return Number.isNumber(value);
+  return Number.isInteger(+value);
 }
 
 function showError(input, message) {
@@ -154,39 +154,39 @@ function showSuccess(input) {
   error.textContent = "";
 }
 
-function checkTitle() {
+function checkTitle(element) {
   let valid = false;
-  const title = titleEl.value.trim();
+  const title = element.value.trim();
   if (isRequired(title)) {
-    showError(titleEl, "Title cannot be blank.");
+    showError(element, "Title cannot be blank.");
   } else {
-    showModal(titleEl);
+    showSuccess(element);
     valid = true;
   }
   return valid;
 }
 
-function checkAuthor() {
+function checkAuthor(element) {
   let valid = false;
-  const author = authorEl.value.trim();
+  const author = element.value.trim();
   if (isRequired(author)) {
-    showError(authorEl, "Author cannot be blank.");
+    showError(element, "Author cannot be blank.");
   } else {
-    showModal(authorEl);
+    showSuccess(element);
     valid = true;
   }
   return valid;
 }
 
-function checkPages() {
+function checkPages(element) {
   let valid = false;
-  const pages = pagesEl.value.trim();
+  const pages = element.value.trim();
   if (isRequired(pages)) {
-    showError(pagesEl, "Pages cannot be blank.");
-  } else if (isNumber(pages)) {
-    showError(pagesEl, "Has to be a number");
+    showError(element, "Pages cannot be blank.");
+  } else if (!isNumber(pages)) {
+    showError(element, "Pages should be a number");
   } else {
-    showModal(pagesEl);
+    showSuccess(element);
     valid = true;
   }
   return valid;

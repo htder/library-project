@@ -221,11 +221,11 @@ small {
 }
 
 .error {
-  border: 1px solid red;
+  border: 2px solid red;
 }
 
 .success {
-  border: 1px solid green;
+  border: 2px solid green;
 }
 
 .form-field {
