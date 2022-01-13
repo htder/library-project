@@ -19,9 +19,8 @@ body.addEventListener("click", (event) => {
     const [result] = /\d+/.exec(event.target.id);
     const card = document.getElementById(`card-${result}`);
     card.parentNode.removeChild(card);
-    const index = myLibrary.findIndex((book) => book.id === result);
+    const index = myLibrary.findIndex((book) => book.id === +result);
     myLibrary.splice(index, 1);
-    console.table(myLibrary);
   }
   if (event.target.matches(".readCheck")) {
     const [result] = /\d+/.exec(event.target.id);
