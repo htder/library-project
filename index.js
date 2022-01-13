@@ -19,11 +19,28 @@ body.addEventListener("click", (event) => {
     const [result] = /\d+/.exec(event.target.id);
     const card = document.getElementById(`card-${result}`);
     card.parentNode.removeChild(card);
-    const title = card.textContent.split("\n")[2].trim();
-    const author = card.textContent.split("\n")[4].trim();
-    myLibrary = myLibrary.filter((book) => {
-      return book.id !== result;
+    myLibrary = myLibrary.filter((book) => book.id !== result);
+    console.table(myLibrary);
+  }
+  if (event.target.matches(".readCheck")) {
+    const [result] = /\d+/.exec(event.target.id);
+    const checkbox = document.getElementById(`remove-${result}`);
+    myLibrary.forEach((book) => {
+      if (book.id === +result) {
+        book.read = !book.read;
+        console.table(myLibrary);
+      }
     });
+    console.table(myLibrary);
+
+    // // const readCheck = document.querySelectorAll(".readCheck");
+    // document.querySelectorAll(".readCheck").forEach((button) => {
+    //   button.addEventListener("click", () => {
+    //     const index = +button.id;
+    //     myLibrary[index].read = !myLibrary[index].read;
+    //     console.table(myLibrary);
+    //   });
+    // });
   }
 });
 
