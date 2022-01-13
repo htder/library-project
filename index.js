@@ -19,7 +19,8 @@ body.addEventListener("click", (event) => {
     const [result] = /\d+/.exec(event.target.id);
     const card = document.getElementById(`card-${result}`);
     card.parentNode.removeChild(card);
-    myLibrary = myLibrary.filter((book) => book.id !== result);
+    const index = myLibrary.findIndex((book) => book.id === result);
+    myLibrary.splice(index, 1);
     console.table(myLibrary);
   }
   if (event.target.matches(".readCheck")) {
@@ -28,19 +29,8 @@ body.addEventListener("click", (event) => {
     myLibrary.forEach((book) => {
       if (book.id === +result) {
         book.read = !book.read;
-        console.table(myLibrary);
       }
     });
-    console.table(myLibrary);
-
-    // // const readCheck = document.querySelectorAll(".readCheck");
-    // document.querySelectorAll(".readCheck").forEach((button) => {
-    //   button.addEventListener("click", () => {
-    //     const index = +button.id;
-    //     myLibrary[index].read = !myLibrary[index].read;
-    //     console.table(myLibrary);
-    //   });
-    // });
   }
 });
 
