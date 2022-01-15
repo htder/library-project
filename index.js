@@ -5,6 +5,20 @@ const submit = document.querySelector(".submit");
 const cancel = document.querySelector(".cancel");
 const form = document.getElementById("form");
 const body = document.querySelector("body");
+class Book {
+  constructor(title, author, pages, read, id) {
+    this.title = title;
+    this.author = author;
+    this.pages = pages;
+    this.read = read;
+    this.id = id;
+    this.info = function () {
+      return `${this.title} by ${this.author}, ${this.pages} pages, ${
+        this.read ? "read." : "not read yet."
+      }`;
+    };
+  }
+}
 
 let myLibrary = [
   new Book("The Lion the Witch and the Wardrobe", "C.S. Lewis", 100, true, 0),
@@ -67,19 +81,6 @@ cancel.addEventListener("click", () => {
   clearForm();
   hideModal();
 });
-
-function Book(title, author, pages, read, id) {
-  this.title = title;
-  this.author = author;
-  this.pages = pages;
-  this.read = read;
-  this.id = id;
-  this.info = function () {
-    return `${this.title} by ${this.author}, ${this.pages} pages, ${
-      this.read ? "read." : "not read yet."
-    }`;
-  };
-}
 
 function renderBook(book) {
   const boundFunc = bookHTML.bind(book);
